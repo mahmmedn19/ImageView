@@ -6,7 +6,7 @@ import com.example.imageview.domain.model.UserInfo
 
 interface UserRepository {
 
-    suspend fun getUserInfo(userId: Int): List<UserInfo>?
+    suspend fun getUserInfo(userId: Int): UserInfo?
 
     suspend fun getUserAlbums(userId: Int): List<UserAlbums>?
 

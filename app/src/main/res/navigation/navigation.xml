@@ -21,6 +21,9 @@
         android:id="@+id/albumFragment"
         android:name="com.example.imageview.ui.feature.album.AlbumFragment"
         android:label="AlbumFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
         <action
             android:id="@+id/action_albumFragment_to_profileFragment"
             app:destination="@id/profileFragment" />

@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.example.imageview.BR
 
-abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
 
-    protected abstract val TAG: String
-    protected abstract val layoutIdFragment: Int
-    protected abstract val viewModel: VM
+    abstract val TAG: String
+    abstract val layoutIdFragment: Int
+    abstract val viewModel: ViewModel
     private lateinit var _binding: VB
     protected val binding get() = _binding
 

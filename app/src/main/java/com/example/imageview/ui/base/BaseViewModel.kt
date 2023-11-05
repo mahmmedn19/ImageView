@@ -20,26 +20,26 @@ abstract class BaseViewModel<T, E>(initialState: T) : ViewModel() {
         Log.v(TAG, message)
     }
 
-    private val _state = MutableStateFlow(initialState)
+    protected  val _state = MutableStateFlow(initialState)
     val state: StateFlow<T> = _state
 
-    private val _effect = MutableSharedFlow<EventHandler<E>>()
+    protected val _effect = MutableSharedFlow<EventHandler<E>>()
     val effect: SharedFlow<EventHandler<E>> = _effect
 
-    protected fun tryToExecute(
+    protected fun <T> tryToExecute(
         function: suspend () -> T,
-        onSuccess: (T) -> Unit,
-        onError: (Exception) -> Unit,
+        onSuccess: (data: T) -> Unit,
+        onError: (Throwable) -> Unit,
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
             try {
                 val result = function()
-                Log.d(TAG, "tryToExecute: $result")
+                log("tryToExecute: $result ")
                 onSuccess(result)
-            } catch (e: Exception) {
-                Log.e(TAG, "tryToExecute: ${e.message}")
-                onError(e)
+            } catch (exception: Throwable) {
+                log("tryToExecute error: $exception")
+                onError(exception)
             }
         }
     }
