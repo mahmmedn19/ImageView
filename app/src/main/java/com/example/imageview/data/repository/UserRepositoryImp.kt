@@ -14,8 +14,8 @@ import javax.inject.Inject
 class UserRepositoryImp @Inject constructor(
     private val apiService: ApiService
 ): BaseRepository(), UserRepository {
-    override suspend fun getUserInfo(userId: Int): List<UserInfo> {
-        return wrap { apiService.getUsers(userId) }.map { it.toUserInfo() }
+    override suspend fun getUserInfo(userId: Int): UserInfo {
+        return wrap { apiService.getUserInfo(userId) }.toUserInfo()
     }
 
     override suspend fun getUserAlbums(userId: Int): List<UserAlbums> {

@@ -44,7 +44,9 @@ object NetworkModule {
             level = HttpLoggingInterceptor.Level.BASIC
         }
     }
-
+    @Singleton
+    @Provides
+    fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
