@@ -1,7 +1,8 @@
-package com.example.imageview
+package com.example.imageview.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.imageview.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
