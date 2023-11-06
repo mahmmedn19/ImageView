@@ -49,7 +49,7 @@ fun setOnQueryTextSubmitListener(searchView: SearchView, viewModel: AlbumViewMod
         }
 
         override fun onQueryTextChange(newText: String?): Boolean {
-            // Handle text changes if needed
+            (viewModel as? AlbumViewModel)?.searchPhotoByTitle(newText.orEmpty())
             return true
         }
     })
