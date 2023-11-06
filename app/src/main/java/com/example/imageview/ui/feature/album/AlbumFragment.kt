@@ -1,27 +1,37 @@
 package com.example.imageview.ui.feature.album
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.imageview.R
+import com.example.imageview.databinding.FragmentAlbumBinding
+import com.example.imageview.ui.base.BaseFragment
+import com.example.imageview.ui.utils.collect
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class AlbumFragment : Fragment() {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+@AndroidEntryPoint
+class AlbumFragment : BaseFragment<FragmentAlbumBinding>() {
+    override val TAG: String = this::class.java.simpleName
+    override val layoutIdFragment: Int = R.layout.fragment_album
+    override val viewModel: AlbumViewModel by viewModels()
+    private val albumAdapter: AlbumAdapter by lazy { AlbumAdapter(viewModel) }
+    override fun setup() {
+        initiateAdapter()
+        collectAction()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_album, container, false)
+    private fun initiateAdapter() {
+        binding.rvAlbumPhotos.adapter = albumAdapter
     }
 
+    private fun collectAction() {
+        collect(viewModel.effect) { effect ->
+            effect.getContentIfNotHandled()?.let { navigateToViewAlbumImageFragment(it) }
+        }
+    }
 
+    private fun navigateToViewAlbumImageFragment(imageId: Int) {
+        val action = AlbumFragmentDirections
+            .actionAlbumFragmentToPhotoFragment(imageId)
+        findNavController().navigate(action)
+    }
 }

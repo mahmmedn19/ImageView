@@ -70,18 +70,16 @@
             app:layout_constraintTop_toBottomOf="@id/tv_user_album"
             tools:listitem="@layout/item_album" />
 
-<!--        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loading"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="104dp"
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_user_album"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading_1"
-            app:showIfTrue="@{viewModel.state.isLoading}" />-->
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfTrue="@{viewModel.state.loading}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
