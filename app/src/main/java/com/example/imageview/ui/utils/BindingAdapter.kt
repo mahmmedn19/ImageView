@@ -26,8 +26,8 @@ fun bindImage(image: ImageView, imageURL: String?) {
     imageURL?.let {
         Glide.with(image)
             .load(imageURL)
-            .placeholder(R.drawable.ic_launcher_background)
-            .into(image)
+            .placeholder(R.drawable.loading_animation)
+            .centerCrop().into(image)
     }
 }
 
