@@ -89,4 +89,13 @@ dependencies {
 
     // Gson
     implementation("com.google.code.gson:gson:2.10.1")
+    // Room
+    val room_version = "2.6.0"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // To use Kotlin Symbol Processing (KSP)
+    ksp("androidx.room:room-compiler:$room_version")
+
+
 }
